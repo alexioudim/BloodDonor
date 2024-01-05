@@ -1,37 +1,39 @@
 package dit.hua.team50.BloodDonor.entity;
 
-import org.springframework.data.annotation.Id;
+import jakarta.persistence.*;
 
 import java.util.Date;
-
+@Entity
 public class Citizen {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-
+    @Column
     private Date date_of_birth;
-
+    @Column
     private String address;
-
+    @Column
     private String blood_type;
-
+    @Column
     private String recent_blood_tests;
 
+//    public Citizen(Integer id, String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
+//        Id = id;
+//        this.date_of_birth = date_of_birth;
+//        this.address = address;
+//        this.blood_type = blood_type;
+//        this.recent_blood_tests = recent_blood_tests;
+//    }
 
-
-    public Citizen(Integer id, String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
-        Id = id;
+    public Citizen(String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password, User user) {
         this.date_of_birth = date_of_birth;
         this.address = address;
         this.blood_type = blood_type;
         this.recent_blood_tests = recent_blood_tests;
     }
 
-    public Citizen(String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
-        this.date_of_birth = date_of_birth;
-        this.address = address;
-        this.blood_type = blood_type;
-        this.recent_blood_tests = recent_blood_tests;
-    }
+
     public Citizen() {
     }
 

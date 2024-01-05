@@ -1,32 +1,36 @@
 package dit.hua.team50.BloodDonor.entity;
 
+import jakarta.persistence.*;
+
+@Entity
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer Id;
-
+    @Column
     private String fname;
-
+    @Column
     private String lname;
-
+    @Column
     private String phone_number;
-
+    @Column
     private String email;
-
+    @Column
     private String username;
-
+    @Column
     private String password;
 
-    public User() {
-    }
-
-    public User(Integer id, String fname, String lname, String phone_number, String email, String username, String password) {
-        Id = id;
+    public User(String fname, String lname, String phone_number, String email, String username, String password) {
         this.fname = fname;
         this.lname = lname;
         this.phone_number = phone_number;
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User() {
     }
 
     public Integer getId() {
