@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Date;
 @Entity
+@Table(name = "Citizens")
 public class Citizen {
 
     @Id
@@ -17,6 +18,10 @@ public class Citizen {
     private String blood_type;
     @Column
     private String recent_blood_tests;
+
+    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @JoinColumn(name = "citizen_id")
+    private User user;
 
 //    public Citizen(Integer id, String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
 //        Id = id;

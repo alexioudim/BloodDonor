@@ -2,7 +2,10 @@ package dit.hua.team50.BloodDonor.entity;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
+@Table(name = "Users")
 public class User {
 
     @Id
@@ -21,7 +24,10 @@ public class User {
     @Column
     private String password;
 
-    public User(String fname, String lname, String phone_number, String email, String username, String password) {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Citizen> citizen_info;
+
+    public User(String fname, String lname, String phone_number, String email, String username, String password, Citizen citizen) {
         this.fname = fname;
         this.lname = lname;
         this.phone_number = phone_number;
