@@ -19,8 +19,8 @@ public class Citizen {
     @Column
     private String recent_blood_tests;
 
-    @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-    @JoinColumn(name = "citizen_id")
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="user_id")
     private User user;
 
 //    public Citizen(Integer id, String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
@@ -31,7 +31,7 @@ public class Citizen {
 //        this.recent_blood_tests = recent_blood_tests;
 //    }
 
-    public Citizen(String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password, User user) {
+    public Citizen(String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
         this.date_of_birth = date_of_birth;
         this.address = address;
         this.blood_type = blood_type;
@@ -80,6 +80,14 @@ public class Citizen {
 
     public void setRecent_blood_tests(String recent_blood_tests) {
         this.recent_blood_tests = recent_blood_tests;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override

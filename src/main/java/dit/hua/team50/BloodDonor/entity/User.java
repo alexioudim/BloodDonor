@@ -24,8 +24,6 @@ public class User {
     @Column
     private String password;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<Citizen> citizen_info;
 
     public User(String fname, String lname, String phone_number, String email, String username, String password, Citizen citizen) {
         this.fname = fname;
