@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 
 public class SecurityConfig {
 
-    @Autowired
+    /*@Autowired
     private AuthEntryPointJwt unauthorizedHandler;
 
     @Bean
@@ -23,5 +23,5 @@ public class SecurityConfig {
 
 
 
-    }
+    }*/
 }
