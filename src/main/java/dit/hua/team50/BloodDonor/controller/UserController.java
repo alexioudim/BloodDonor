@@ -1,4 +1,4 @@
-package dit.hua.team50.BloodDonor.Controller;
+package dit.hua.team50.BloodDonor.controller;
 
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
     @Autowired
     private UserRepository userRepository;

@@ -11,7 +11,7 @@ import java.util.List;
 public class Citizen {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     @Column
     private Date date_of_birth;
@@ -19,15 +19,13 @@ public class Citizen {
     private String address;
     @Column
     private String blood_type;
-    @Column
-    private String recent_blood_tests;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="user_id")
     private User user;
 
-    @OneToMany(mappedBy = "citizen")
-    private List<Donation> donations = new ArrayList<>();
+    @OneToMany(mappedBy = "citizen", cascade = CascadeType.ALL)
+    private List<Application> applications = new ArrayList<>();
 
 //    public Citizen(Integer id, String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
 //        Id = id;
@@ -86,12 +84,12 @@ public class Citizen {
         this.user = user;
     }
 
-    public List<Donation> getDonations() {
-        return donations;
+    public List<Application> getApplications() {
+        return applications;
     }
 
-    public void setDonations(List<Donation> donations) {
-        this.donations = donations;
+    public void setApplications(List<Application> applications) {
+        this.applications = applications;
     }
 
     @Override
@@ -102,7 +100,7 @@ public class Citizen {
                 ", address='" + address + '\'' +
                 ", blood_type='" + blood_type + '\'' +
                 ", user=" + user +
-                ", donations=" + donations +
+                ", donations=" + applications +
                 '}';
     }
 }

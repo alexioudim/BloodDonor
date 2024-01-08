@@ -5,8 +5,8 @@ import jakarta.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "Donations")
-public class Donation {
+@Table(name = "Applications")
+public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -24,10 +24,10 @@ public class Donation {
     @JoinColumn(name = "citizen_id")
     private Citizen citizen;
 
-    public Donation() {
+    public Application() {
     }
 
-    public Donation(Date date_created,String recent_blood_tests,Boolean approval, Citizen citizen) {
+    public Application(Date date_created, String recent_blood_tests, Boolean approval, Citizen citizen) {
         this.date_created = date_created;
         this.recent_blood_tests = recent_blood_tests;
         this.approval= approval;

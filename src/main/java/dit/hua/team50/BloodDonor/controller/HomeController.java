@@ -1,4 +1,4 @@
-package dit.hua.team50.BloodDonor.Controller;
+package dit.hua.team50.BloodDonor.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

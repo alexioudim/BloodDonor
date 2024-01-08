@@ -1,0 +1,32 @@
+<citizen>
+    <div th:if="${ not#lists.isEmpty(myApplications)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Date Created</th>
+                <th>Blood Tests</th>
+                <th>Approval</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="application : ${myApplications}">
+                <td th:text="${application.date_created}"></td>
+                <td th:text="${application.recent_blood_tests}"></td>
+                <td th:text="${application.approval}"></td>
+                <td th:if="${application.id}"><a class="btn btn-info" th:href="@{/my_applications/{citizen_id}(id=${application.id})}">Edit</a>
+                    <button type="button" class="btn btn-danger" th:id="${application.id}"
+                            name="deleteStudent"><i class="remove user icon"></i>
+                        Delete</button>
+                    <a class="btn btn-primary" th:href="@{/assignment/{id}(id=${application.id})}">Assignments</a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${ #lists.isEmpty(myApplications)}">
+        No Students found!
+    </div>
+    </script>
+
+</citizen>
