@@ -10,6 +10,7 @@ public class Application {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "application_id")
     private Integer id;
 
     @Column

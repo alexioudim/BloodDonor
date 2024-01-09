@@ -15,7 +15,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    public String showUsers(Model model){
+    public String showUsers(Model model) {
         List<User> users = userRepository.findAll();
         model.addAttribute("users", users);
         return "users";
