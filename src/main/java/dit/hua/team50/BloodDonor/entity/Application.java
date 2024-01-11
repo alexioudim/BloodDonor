@@ -19,7 +19,7 @@ public class Application {
     @Column
     private String recent_blood_tests;
     @Column
-    private Boolean approval;
+    private Boolean approval_status;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "citizen_id")
@@ -31,7 +31,7 @@ public class Application {
     public Application(Date date_created, String recent_blood_tests, Boolean approval, Citizen citizen) {
         this.date_created = date_created;
         this.recent_blood_tests = recent_blood_tests;
-        this.approval= approval;
+        this.approval_status= approval;
         this.citizen = citizen;
     }
 
@@ -67,11 +67,11 @@ public class Application {
         this.recent_blood_tests = recent_blood_tests;
     }
 
-    public Boolean getApproval() {
-        return approval;
+    public Boolean getApprovalStatus() {
+        return approval_status;
     }
 
-    public void setApproval(Boolean approval) {
-        this.approval = approval;
+    public void setApprovalStatus(Boolean approval_status) {
+        this.approval_status = approval_status;
     }
 }

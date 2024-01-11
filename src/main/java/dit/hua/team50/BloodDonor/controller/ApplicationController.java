@@ -40,7 +40,7 @@ public class ApplicationController {
     @PostMapping("/{application_id}/approve")
     public ResponseEntity<String> approveApplication(@PathVariable Integer application_id) {
         Application application = applicationService.findById(application_id);
-        application.setApproval(true);
+        application.setApprovalStatus(true);
         applicationService.saveApplication(application);
 
         return new ResponseEntity<>("Application approved successfully", HttpStatus.OK);
@@ -49,7 +49,7 @@ public class ApplicationController {
     @PostMapping("/{application_id}/reject")
     public ResponseEntity<String> rejectApplication(@PathVariable Integer application_id) {
         Application application = applicationService.findById(application_id);
-        application.setApproval(false);
+        application.setApprovalStatus(false);
         applicationService.saveApplication(application);
 
         return new ResponseEntity<>("Application rejected successfully", HttpStatus.OK);
