@@ -2,6 +2,7 @@ package dit.hua.team50.BloodDonor.service;
 
 import dit.hua.team50.BloodDonor.entity.Application;
 import dit.hua.team50.BloodDonor.entity.Citizen;
+import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.CitizenRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +32,10 @@ public class CitizenService {
     @Transactional
     public Citizen getCitizen(Integer citizen_id){
         return citizenRepository.findById(citizen_id).get();
+    }
+
+    @Transactional
+    public void saveCitizen(Citizen citizen) {
+        citizenRepository.save(citizen);
     }
 }

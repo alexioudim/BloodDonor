@@ -33,7 +33,7 @@ public class ApplicationService {
     }
 
     @Transactional
-    public void save(Application application){
+    public void saveApplication(Application application){
         applicationRepository.save(application);
     }
 

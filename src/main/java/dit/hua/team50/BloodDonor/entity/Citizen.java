@@ -14,6 +14,14 @@ public class Citizen {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
     @Column
+    private String fname;
+    @Column
+    private String lname;
+    @Column
+    private String phone_number;
+    @Column
+    private String email;
+    @Column
     private Date date_of_birth;
     @Column
     private String address;
@@ -27,20 +35,6 @@ public class Citizen {
     @OneToMany(mappedBy = "citizen", cascade = CascadeType.ALL)
     private List<Application> applications = new ArrayList<>();
 
-//    public Citizen(Integer id, String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
-//        Id = id;
-//        this.date_of_birth = date_of_birth;
-//        this.address = address;
-//        this.blood_type = blood_type;
-//        this.recent_blood_tests = recent_blood_tests;
-//    }
-
-    public Citizen(String fname, String lname, String phone_number, String email, Date date_of_birth, String address, String blood_type, String recent_blood_tests, String username, String password) {
-        this.date_of_birth = date_of_birth;
-        this.address = address;
-        this.blood_type = blood_type;
-    }
-
     public Citizen() {
     }
 
@@ -50,6 +44,38 @@ public class Citizen {
 
     public void setId(Integer id) {
         this.Id = id;
+    }
+
+    public String getFname() {
+        return fname;
+    }
+
+    public void setFname(String fname) {
+        this.fname = fname;
+    }
+
+    public String getLname() {
+        return lname;
+    }
+
+    public void setLname(String lname) {
+        this.lname = lname;
+    }
+
+    public String getPhone_number() {
+        return phone_number;
+    }
+
+    public void setPhone_number(String phone_number) {
+        this.phone_number = phone_number;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Date getDate_of_birth() {
@@ -96,11 +122,15 @@ public class Citizen {
     public String toString() {
         return "Citizen{" +
                 "Id=" + Id +
+                ", fname='" + fname + '\'' +
+                ", lname='" + lname + '\'' +
+                ", phone_number='" + phone_number + '\'' +
+                ", email='" + email + '\'' +
                 ", date_of_birth=" + date_of_birth +
                 ", address='" + address + '\'' +
                 ", blood_type='" + blood_type + '\'' +
                 ", user=" + user +
-                ", donations=" + applications +
+                ", applications=" + applications +
                 '}';
     }
 }

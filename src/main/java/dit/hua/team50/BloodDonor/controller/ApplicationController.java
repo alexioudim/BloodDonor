@@ -41,7 +41,7 @@ public class ApplicationController {
     public ResponseEntity<String> approveApplication(@PathVariable Integer application_id) {
         Application application = applicationService.findById(application_id);
         application.setApproval(true);
-        applicationService.save(application);
+        applicationService.saveApplication(application);
 
         return new ResponseEntity<>("Application approved successfully", HttpStatus.OK);
     }
@@ -50,7 +50,7 @@ public class ApplicationController {
     public ResponseEntity<String> rejectApplication(@PathVariable Integer application_id) {
         Application application = applicationService.findById(application_id);
         application.setApproval(false);
-        applicationService.save(application);
+        applicationService.saveApplication(application);
 
         return new ResponseEntity<>("Application rejected successfully", HttpStatus.OK);
     }
