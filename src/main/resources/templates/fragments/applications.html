@@ -1,0 +1,23 @@
+<applications>
+    <div th:if="${not #lists.isEmpty(applications)}">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Date Created</th>
+                <th>Recent Tests</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="app : ${applications}">
+                <td th:text="${app.date_created}"></td>
+                <td th:text="${app.recent_blood_tests}"></td>
+                <td th:if="${app.id}"><a class="btn btn-info" th:href="@{/applications/{application_id}(application_id=${app.id})}">Show Applicant</a>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div th:if="${#lists.isEmpty(applications)}">
+        No Applications found!
+    </div>
+</applications>

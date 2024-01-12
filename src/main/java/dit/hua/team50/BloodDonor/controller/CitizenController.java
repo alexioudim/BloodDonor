@@ -27,11 +27,6 @@ public class CitizenController {
     private ApplicationService applicationService;
 
     @GetMapping("")
-    public String citizenIndex() {
-        return "citizen";
-    }
-
-    @GetMapping("/my_applications")
     public String myApplications(@PathVariable Integer citizen_id, Model model) {
 
         List<Application> myApplications = citizenService.getMyApplications(citizen_id);
@@ -40,7 +35,7 @@ public class CitizenController {
         return "my_applications";
     }
 
-    @GetMapping("my_applications/new")
+    @GetMapping("/new")
     public String newApplication(@PathVariable Integer citizen_id, Model model){
 
         Application application = new Application();
@@ -49,7 +44,7 @@ public class CitizenController {
         return "add_application";
     }
 
-    @PostMapping("my_applications/new")
+    @PostMapping("/new")
     public String saveApplication(@ModelAttribute("newApplication") Application application, @PathVariable Integer citizen_id, Model model) {
         applicationService.saveApplication(application);
         model.addAttribute("applications", citizenService.getMyApplications(citizen_id));

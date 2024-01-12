@@ -9,7 +9,7 @@ import java.util.Date;
 public class Application {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "application_id")
     private Integer id;
 
