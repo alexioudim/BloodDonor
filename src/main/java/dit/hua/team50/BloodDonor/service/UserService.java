@@ -6,7 +6,9 @@ import dit.hua.team50.BloodDonor.repository.RoleRepository;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -67,4 +69,11 @@ public class UserService implements UserDetailsService {
             );
         }
     }
+
+    /*@Transactional
+    public Integer getLoggedInId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserService userService = (UserService) authentication.getPrincipal();
+    }
+*/
 }

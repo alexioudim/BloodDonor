@@ -38,4 +38,9 @@ public class CitizenService {
     public void saveCitizen(Citizen citizen) {
         citizenRepository.save(citizen);
     }
+
+    @Transactional
+    public Citizen getCitizenByUserId(Integer user_id) {
+        return citizenRepository.findByUserId(user_id).get();
+    }
 }
