@@ -70,10 +70,8 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    /*@Transactional
-    public Integer getLoggedInId() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserService userService = (UserService) authentication.getPrincipal();
+    @Transactional
+    public Optional<User> findByEmail(String email) {
+        return userRepository.findByUsername(email);
     }
-*/
 }

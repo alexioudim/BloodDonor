@@ -24,7 +24,7 @@ public class ApplicationController {
     private ApplicationService applicationService;
 
     @GetMapping("")
-    public String showApplications(Model model){
+    public String showApplications(Model model) {
         List<Application> applications = applicationService.getApplications();
         model.addAttribute("applications", applications);
 
@@ -32,7 +32,7 @@ public class ApplicationController {
     }
 
     @GetMapping("/{application_id}")
-    public String showApplicant(@PathVariable Integer application_id, Model model){
+    public String showApplicant(@PathVariable Integer application_id, Model model) {
         Citizen applicant = applicationService.findApplicant(application_id);
         model.addAttribute("applicant", applicant);
 
@@ -42,7 +42,7 @@ public class ApplicationController {
     @PostMapping("/{application_id}/approve")
     public ResponseEntity<String> approveApplication(@PathVariable Integer application_id) {
         Application application = applicationService.findById(application_id);
-        application.setApprovalStatus("approved");
+        application.setApproval_status("approved");
         applicationService.saveApplication(application);
 
         return new ResponseEntity<>("Application approved successfully", HttpStatus.OK);
@@ -51,7 +51,7 @@ public class ApplicationController {
     @PostMapping("/{application_id}/reject")
     public ResponseEntity<String> rejectApplication(@PathVariable Integer application_id) {
         Application application = applicationService.findById(application_id);
-        application.setApprovalStatus("rejected");
+        application.setApproval_status("rejected");
         applicationService.saveApplication(application);
 
         return new ResponseEntity<>("Application rejected successfully", HttpStatus.OK);

@@ -35,9 +35,17 @@ public class CitizenService {
     }
 
     @Transactional
-    public void saveCitizen(Citizen citizen) {
-        citizenRepository.save(citizen);
+    public Integer saveCitizen(Citizen citizen) {
+        Citizen savedCitizen = citizenRepository.save(citizen);
+        return savedCitizen.getId();
     }
+
+    @Transactional
+    public Integer updateCitizen(Citizen citizen) {
+        Citizen savedCitizen = citizenRepository.save(citizen);
+        return savedCitizen.getId();
+    }
+
 
     @Transactional
     public Citizen getCitizenByUserId(Integer user_id) {

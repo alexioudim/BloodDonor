@@ -1,0 +1,29 @@
+<profile>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>E-mail</th>
+                <th>Date of Birth</th>
+                <th>Address</th>
+                <th>Blood Type</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="citizen : ${citizen_information}">
+                    <td th:text="${citizen.fname}"></td>
+                    <td th:text="${citizen.lname}"></td>
+                    <td th:text="${citizen.phone_number}"></td>
+                    <td th:text="${citizen.email}"></td>
+                    <td th:text="${citizen.date_of_birth}"></td>
+                    <td th:text="${citizen.address}"></td>
+                    <td th:text="${citizen.blood_type}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+</profile>

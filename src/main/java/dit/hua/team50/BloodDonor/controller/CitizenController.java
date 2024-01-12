@@ -8,13 +8,17 @@ import dit.hua.team50.BloodDonor.service.ApplicationService;
 import dit.hua.team50.BloodDonor.service.CitizenService;
 import dit.hua.team50.BloodDonor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 import static java.time.LocalDate.now;
 
@@ -31,13 +35,15 @@ public class CitizenController {
     private ApplicationService applicationService;
 
     @GetMapping("")
-    public String CitizenRedirect(@AuthenticationPrincipal User user, Model model){
-        Citizen citizen = citizenService.getCitizenByUserId(user.getId());
+    public String CitizenRedirect(Model model){
+        Integer user_id = 11;
+        Citizen citizen = citizenService.getCitizenByUserId(user_id);
         model.addAttribute("citizen", citizen);
 
-        return "redirect";
+        return "citizen_menu";
     }
 
+    //show applications
     @GetMapping("/{citizen_id}")
     public String myApplications(@PathVariable Integer citizen_id, Model model) {
 
@@ -59,28 +65,29 @@ public class CitizenController {
 
     @PostMapping("/{citizen_id}/new")
     public String saveApplication(@ModelAttribute("newApplication") Application application, @PathVariable Integer citizen_id, Model model) {
-        application.setApprovalStatus("Pending");
+        application.setApproval_status("Pending");
         applicationService.saveApplication(application);
         model.addAttribute("applications", citizenService.getMyApplications(citizen_id));
 
         return "my_applications";
     }
 
+    //show profile
     @GetMapping("/{citizen_id}/profile")
     public String citizenInformation(@PathVariable Integer citizen_id, Model model){
         Citizen citizenInfo = citizenService.getCitizen(citizen_id);
-        model.addAttribute("citizen information", citizenInfo);
+        model.addAttribute("citizen_information", citizenInfo);
         return "citizen_info";
     }
 
-    @GetMapping("/{citizen_id}/profile/edit")
-    public String editCitizenInformation(@PathVariable Integer citizen_id, @ModelAttribute("citizen information") Citizen citizenInfo, Model model){
-        return "edit_citizen_info";
-    }
+//    @GetMapping("/{citizen_id}/profile/edit")
+//    public String editCitizenInformation(@PathVariable Integer citizen_id, @ModelAttribute("citizen information") Citizen citizenInfo, Model model){
+//        return "edit_citizen_info";
+//    }
 
     @PostMapping("/{citizen_id}/profile/edit")
     public String saveCitizenInformation(@PathVariable Integer citizen_id,@ModelAttribute("citizen information") Citizen citizenInfo, Model model){
-        citizenService.saveCitizen(citizenInfo);
+        citizenService.updateCitizen(citizenInfo);
         model.addAttribute("updated citizen information", citizenInfo);
         return "citizen_info";
     }

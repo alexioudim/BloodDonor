@@ -1,7 +1,9 @@
 package dit.hua.team50.BloodDonor.controller;
 
+import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
+import dit.hua.team50.BloodDonor.service.CitizenService;
 import dit.hua.team50.BloodDonor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,23 +19,53 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    @Autowired
+    private CitizenService citizenService;
+
 
     @GetMapping("/register")
     public String register(Model model){
         User user = new User();
+        Citizen citizen = new Citizen();
         model.addAttribute("user", user);
+        model.addAttribute("citizen", citizen);
         return "user_registration";
     }
 
     @PostMapping("/saveUser")
-    public String saveUser(@ModelAttribute User user, Model model){
+    public String saveUser(@ModelAttribute User user, @ModelAttribute Citizen citizen, Model model){
         System.out.println("Roles: "+ user.getRoles());
         Integer id = userService.saveUser(user);
+
+        citizen.setUser(user);
+        citizenService.saveCitizen(citizen);
+
         String message = "User '"+id+"' saved successfully !";
         model.addAttribute("msg", message);
         return "home";
     }
 
+   /* @GetMapping("/citizen-registration")
+    public String citizenRegistration(Model model){
+        Citizen citizen = new Citizen();
+        model.addAttribute("citizen", citizen);
+        return "citizen_registration";
+    }
+
+    @PostMapping("/saveCitizen")
+    public String saveCitizen(@ModelAttribute Citizen citizen, Model model){
+
+        citizen.setUser(user);
+        citizen.setEmail(currentUser.getEmail());
+        Integer id = citizenService.saveCitizen(citizen);
+
+        String message = "Citizen '"+id+"' saved successfully !";
+        model.addAttribute("msg", message);
+
+        currentUser = null;
+        return "home";
+    }
+*/
     /*@GetMapping("/users")
     public String showUsers(Model model) {
         List<User> users = userService.findAll();

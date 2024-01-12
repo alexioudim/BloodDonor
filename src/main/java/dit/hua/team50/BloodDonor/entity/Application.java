@@ -68,9 +68,11 @@ public class Application {
         this.recent_blood_tests = recent_blood_tests;
     }
 
-    public String getApprovalStatus() {
+    public String getApproval_status() {
         return approval_status;
     }
 
-    public void setApprovalStatus(String approval_status) {this.approval_status = approval_status;}
+    public void setApproval_status(String approval_status) {
+        this.approval_status = approval_status;
+    }
 }

@@ -11,12 +11,16 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/applications">Applications</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/citizen">My Applications</a>
-                    </li>
+                    <div sec:authorize="hasRole('ROLE_SECRETARY')">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/applications">Applications</a>
+                        </li>
+                    </div>
+                    <div sec:authorize="hasRole('ROLE_USER')">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/citizen">Citizen Menu</a>
+                        </li>
+                    </div>
                     <li sec:authorize="isAuthenticated()"  class="nav-item">
                         <form th:action="@{/logout}" method="post">
                             <input type="submit"  class="btn btn-primary" value="Sign Out"/>

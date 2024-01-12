@@ -24,7 +24,7 @@ public class Citizen {
     @Column
     private String email;
     @Column
-    private Date date_of_birth;
+    private String date_of_birth;
     @Column
     private String address;
     @Column
@@ -80,11 +80,11 @@ public class Citizen {
         this.email = email;
     }
 
-    public Date getDate_of_birth() {
+    public String getDate_of_birth() {
         return date_of_birth;
     }
 
-    public void setDate_of_birth(Date date_of_birth) {
+    public void setDate_of_birth(String date_of_birth) {
         this.date_of_birth = date_of_birth;
     }
 
