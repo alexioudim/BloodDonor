@@ -1,6 +1,7 @@
 package dit.hua.team50.BloodDonor.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class Citizen {
     private String lname;
     @Column
     private String phone_number;
+    @Email
     @Column
     private String email;
     @Column

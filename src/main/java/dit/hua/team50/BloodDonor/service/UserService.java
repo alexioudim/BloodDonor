@@ -40,13 +40,16 @@ public class UserService implements UserDetailsService {
 
         Role role = roleRepository.findByName("ROLE_USER")
                 .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-        user.setRole(role);
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+        user.setRoles(roles);
 
         user = userRepository.save(user);
         return user.getId();
     }
 
     @Override
+    @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> opt = userRepository.findByUsername(username);
 
@@ -54,11 +57,13 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("User with username:" + username +" not found!");
         else {
             User user = opt.get();
-            Role role = user.getRole();
             return new org.springframework.security.core.userdetails.User(
+                    user.getEmail(),
                     user.getPassword(),
-                    user.getUsername(),
-                    Collections.singleton(new SimpleGrantedAuthority(role.getName()))
+                    user.getRoles()
+                            .stream()
+                            .map(role-> new SimpleGrantedAuthority(role.toString()))
+                            .collect(Collectors.toSet())
             );
         }
     }
