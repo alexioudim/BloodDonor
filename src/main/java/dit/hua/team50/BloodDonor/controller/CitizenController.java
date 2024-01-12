@@ -12,7 +12,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
+
+import static java.time.LocalDate.now;
 
 @Controller
 @RequestMapping("/citizen/{citizen_id}")
@@ -39,6 +42,7 @@ public class CitizenController {
     public String newApplication(@PathVariable Integer citizen_id, Model model){
 
         Application application = new Application();
+        application.setDate_created(now());
         model.addAttribute("newApplication", application );
 
         return "add_application";
@@ -46,6 +50,7 @@ public class CitizenController {
 
     @PostMapping("/new")
     public String saveApplication(@ModelAttribute("newApplication") Application application, @PathVariable Integer citizen_id, Model model) {
+        application.setApprovalStatus("Pending");
         applicationService.saveApplication(application);
         model.addAttribute("applications", citizenService.getMyApplications(citizen_id));
 

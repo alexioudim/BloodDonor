@@ -2,6 +2,7 @@ package dit.hua.team50.BloodDonor.entity;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -14,12 +15,12 @@ public class Application {
     private Integer id;
 
     @Column
-    private Date date_created;
+    private LocalDate date_created;
 
     @Column
     private String recent_blood_tests;
     @Column
-    private Boolean approval_status;
+    private String approval_status;
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "citizen_id")
@@ -28,10 +29,10 @@ public class Application {
     public Application() {
     }
 
-    public Application(Date date_created, String recent_blood_tests, Boolean approval, Citizen citizen) {
+    public Application(LocalDate date_created, String recent_blood_tests, String approval_status, Citizen citizen) {
         this.date_created = date_created;
         this.recent_blood_tests = recent_blood_tests;
-        this.approval_status= approval;
+        this.approval_status= approval_status;
         this.citizen = citizen;
     }
 
@@ -43,11 +44,11 @@ public class Application {
         this.id = id;
     }
 
-    public Date getDate_created() {
+    public LocalDate getDate_created() {
         return date_created;
     }
 
-    public void setDate_created(Date date_created) {
+    public void setDate_created(LocalDate date_created) {
         this.date_created = date_created;
     }
 
@@ -67,11 +68,9 @@ public class Application {
         this.recent_blood_tests = recent_blood_tests;
     }
 
-    public Boolean getApprovalStatus() {
+    public String getApprovalStatus() {
         return approval_status;
     }
 
-    public void setApprovalStatus(Boolean approval_status) {
-        this.approval_status = approval_status;
-    }
+    public void setApprovalStatus(String approval_status) {this.approval_status = approval_status;}
 }
