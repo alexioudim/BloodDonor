@@ -6,16 +6,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/auth")
 public class AuthController {
-
-    @PostMapping("/login")
-    public void authenticateUser(){
-
-    }
-
-    @PostMapping("/register")
-    public void registerUser(){
-
+    @GetMapping("/login")
+    public String login() {
+        return "login";
     }
 }
