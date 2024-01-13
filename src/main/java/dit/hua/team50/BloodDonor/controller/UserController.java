@@ -45,27 +45,6 @@ public class UserController {
         return "home";
     }
 
-   /* @GetMapping("/citizen-registration")
-    public String citizenRegistration(Model model){
-        Citizen citizen = new Citizen();
-        model.addAttribute("citizen", citizen);
-        return "citizen_registration";
-    }
-
-    @PostMapping("/saveCitizen")
-    public String saveCitizen(@ModelAttribute Citizen citizen, Model model){
-
-        citizen.setUser(user);
-        citizen.setEmail(currentUser.getEmail());
-        Integer id = citizenService.saveCitizen(citizen);
-
-        String message = "Citizen '"+id+"' saved successfully !";
-        model.addAttribute("msg", message);
-
-        currentUser = null;
-        return "home";
-    }
-*/
     /*@GetMapping("/users")
     public String showUsers(Model model) {
         List<User> users = userService.findAll();
