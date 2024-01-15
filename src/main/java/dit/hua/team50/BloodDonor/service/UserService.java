@@ -70,6 +70,26 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    /*@Transactional
+    public Integer getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || !authentication.isAuthenticated()) {
+            return null; // User not authenticated
+        }
+
+        Object principal = authentication.getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            User currentUser = userRepository.findByUsername(username).get();
+            return currentUser.getId();
+
+        }
+
+        return null; // Unable to retrieve user id
+    }*/
+
     @Transactional
     public Optional<User> findByEmail(String email) {
         return userRepository.findByUsername(email);

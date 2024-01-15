@@ -36,8 +36,10 @@ public class CitizenController {
 
     @GetMapping("")
     public String CitizenRedirect(Model model){
-        Integer user_id = 11;
-        Citizen citizen = citizenService.getCitizenByUserId(user_id);
+
+        Citizen citizen = citizenService.getCitizenByUserId(11);
+
+
         model.addAttribute("citizen", citizen);
 
         return "citizen_menu";
