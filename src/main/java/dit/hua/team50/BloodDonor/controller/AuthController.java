@@ -1,7 +1,10 @@
 package dit.hua.team50.BloodDonor.controller;
 
 import dit.hua.team50.BloodDonor.entity.Role;
+import dit.hua.team50.BloodDonor.entity.User;
+import dit.hua.team50.BloodDonor.payload.request.RegisterRequest;
 import dit.hua.team50.BloodDonor.payload.response.JwtResponse;
+import dit.hua.team50.BloodDonor.payload.response.MessageResponse;
 import dit.hua.team50.BloodDonor.repository.RoleRepository;
 import dit.hua.team50.BloodDonor.service.UserDetailsImplementation;
 import dit.hua.team50.BloodDonor.config.JwtUtils;
@@ -19,7 +22,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @RestController
@@ -79,5 +85,35 @@ public class AuthController {
                     userDetails.getUsername(),
                     userDetails.getEmail(),
                     roles));
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> registerUser(@Valid @RequestBody RegisterRequest registerRequest) {
+        if (userRepository.existsByUsername(registerRequest.getUsername())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Username is already taken!"));
+        }
+
+        if (userRepository.existsByEmail(registerRequest.getEmail())) {
+            return ResponseEntity
+                    .badRequest()
+                    .body(new MessageResponse("Error: Email is already in use!"));
+        }
+
+        // Create new user's account
+        User user = new User(registerRequest.getUsername(),
+                registerRequest.getEmail(),
+                encoder.encode(registerRequest.getPassword()));
+
+        Role role = roleRepository.findByName("ROLE_USER")
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        Set<Role> roles = new HashSet<>();
+        roles.add(role);
+
+        user.setRoles(roles);
+        userRepository.save(user);
+
+        return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
 }
