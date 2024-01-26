@@ -5,8 +5,8 @@ import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
 import dit.hua.team50.BloodDonor.service.ApplicationService;
+import dit.hua.team50.BloodDonor.service.BloodUserDetailsService;
 import dit.hua.team50.BloodDonor.service.CitizenService;
-import dit.hua.team50.BloodDonor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -26,7 +26,7 @@ import static java.time.LocalDate.now;
 @RequestMapping("/citizen")
 public class CitizenController {
     @Autowired
-    private UserService userService;
+    private BloodUserDetailsService userService;
 
     @Autowired
     private CitizenService citizenService;

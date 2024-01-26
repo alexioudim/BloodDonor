@@ -1,4 +1,4 @@
-package dit.hua.team50.BloodDonor.service;
+/*package dit.hua.team50.BloodDonor.service;
 
 import dit.hua.team50.BloodDonor.entity.Role;
 import dit.hua.team50.BloodDonor.entity.User;
@@ -35,7 +35,7 @@ public class UserService implements UserDetailsService {
     private BCryptPasswordEncoder passwordEncoder;
 
     @Transactional
-    public Integer saveUser(User user) {
+    public Long saveUser(User user) {
         String passwd = user.getPassword();
         String encodedPasswd = passwordEncoder.encode(passwd);
         user.setPassword(encodedPasswd);
@@ -70,7 +70,7 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    /*@Transactional
+    *//*@Transactional
     public Integer getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
@@ -88,10 +88,10 @@ public class UserService implements UserDetailsService {
         }
 
         return null; // Unable to retrieve user id
-    }*/
+    }*//*
 
     @Transactional
     public Optional<User> findByEmail(String email) {
         return userRepository.findByUsername(email);
     }
-}
+}*/

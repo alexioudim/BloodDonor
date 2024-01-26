@@ -1,24 +1,23 @@
-package dit.hua.team50.BloodDonor.controller;
+/*package dit.hua.team50.BloodDonor.controller;
 
 import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
+import dit.hua.team50.BloodDonor.service.BloodUserDetailsService;
 import dit.hua.team50.BloodDonor.service.CitizenService;
 import dit.hua.team50.BloodDonor.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/admin")
 public class UserController {
     @Autowired
-    private UserService userService;
+    private BloodUserDetailsService userService;
     @Autowired
     private CitizenService citizenService;
 
@@ -35,7 +34,7 @@ public class UserController {
     @PostMapping("/saveUser")
     public String saveUser(@ModelAttribute User user, @ModelAttribute Citizen citizen, Model model){
         System.out.println("Roles: "+ user.getRoles());
-        Integer id = userService.saveUser(user);
+        Long id = userService.saveUser(user);
 
         citizen.setUser(user);
         citizenService.saveCitizen(citizen);
@@ -45,11 +44,11 @@ public class UserController {
         return "home";
     }
 
-    /*@GetMapping("/users")
+    @GetMapping("/users")
     public String showUsers(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
         return "users";
-    }*/
+    }
 
-}
+}*/
