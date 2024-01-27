@@ -12,6 +12,7 @@ import java.util.List;
 @Table(name = "Citizens")
 public class Citizen {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
@@ -40,6 +41,16 @@ public class Citizen {
     private List<Application> applications = new ArrayList<>();
 
     public Citizen() {
+    }
+
+    public Citizen(String fname, String lname, String phone_number, String date_of_birth, String address, String blood_type, User user) {
+        this.fname = fname;
+        this.lname = lname;
+        this.phone_number = phone_number;
+        this.date_of_birth = date_of_birth;
+        this.address = address;
+        this.blood_type = blood_type;
+        this.user = user;
     }
 
     public Integer getId() {

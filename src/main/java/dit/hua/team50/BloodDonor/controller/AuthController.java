@@ -1,10 +1,12 @@
 package dit.hua.team50.BloodDonor.controller;
 
+import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.Role;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.payload.request.RegisterRequest;
 import dit.hua.team50.BloodDonor.payload.response.JwtResponse;
 import dit.hua.team50.BloodDonor.payload.response.MessageResponse;
+import dit.hua.team50.BloodDonor.repository.CitizenRepository;
 import dit.hua.team50.BloodDonor.repository.RoleRepository;
 import dit.hua.team50.BloodDonor.service.UserDetailsImplementation;
 import dit.hua.team50.BloodDonor.config.JwtUtils;
@@ -37,6 +39,9 @@ public class AuthController {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    CitizenRepository citizenRepository;
 
     @Autowired
     RoleRepository roleRepository;
@@ -112,7 +117,17 @@ public class AuthController {
         roles.add(role);
 
         user.setRoles(roles);
+
+        Citizen citizen = new Citizen(registerRequest.getFname(),
+                registerRequest.getLname(),
+                registerRequest.getPhone_number(),
+                registerRequest.getDate_of_birth(),
+                registerRequest.getAddress(),
+                registerRequest.getBlood_type(),
+                user);
+
         userRepository.save(user);
+        citizenRepository.save(citizen);
 
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
