@@ -9,5 +9,5 @@ import java.util.Optional;
 @Repository
 public interface CitizenRepository extends JpaRepository<Citizen, Integer> {
 
-    Optional<Citizen> findByUserId (Integer user_id);
+    Optional<Citizen> findByUserId (Long user_id);
 }

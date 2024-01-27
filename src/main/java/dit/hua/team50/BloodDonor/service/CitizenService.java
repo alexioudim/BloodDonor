@@ -48,7 +48,7 @@ public class CitizenService {
 
 
     @Transactional
-    public Citizen getCitizenByUserId(Integer user_id) {
+    public Citizen getCitizenByUserId(Long user_id) {
         return citizenRepository.findByUserId(user_id).get();
     }
 }

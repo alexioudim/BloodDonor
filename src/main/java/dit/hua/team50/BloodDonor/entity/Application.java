@@ -1,5 +1,6 @@
 package dit.hua.team50.BloodDonor.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -24,16 +25,17 @@ public class Application {
 
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
     @JoinColumn(name = "citizen_id")
+    @JsonIgnore
     private Citizen citizen;
-
-    public Application() {
-    }
 
     public Application(LocalDate date_created, String recent_blood_tests, String approval_status, Citizen citizen) {
         this.date_created = date_created;
         this.recent_blood_tests = recent_blood_tests;
-        this.approval_status= approval_status;
+        this.approval_status = approval_status;
         this.citizen = citizen;
+    }
+
+    public Application() {
     }
 
     public Integer getId() {

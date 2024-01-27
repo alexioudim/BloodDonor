@@ -1,5 +1,6 @@
 package dit.hua.team50.BloodDonor.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 
@@ -35,6 +36,7 @@ public class Citizen {
     private User user;
 
     @OneToMany(mappedBy = "citizen", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Application> applications = new ArrayList<>();
 
     public Citizen() {
