@@ -120,6 +120,7 @@ public class AuthController {
 
         Citizen citizen = new Citizen(registerRequest.getFname(),
                 registerRequest.getLname(),
+                registerRequest.getEmail(),
                 registerRequest.getPhone_number(),
                 registerRequest.getDate_of_birth(),
                 registerRequest.getAddress(),
