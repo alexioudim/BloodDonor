@@ -4,6 +4,7 @@ import dit.hua.team50.BloodDonor.entity.Application;
 import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.payload.request.ApplicationRequest;
+import dit.hua.team50.BloodDonor.payload.request.ContactInfoRequest;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
 import dit.hua.team50.BloodDonor.service.ApplicationService;
 import dit.hua.team50.BloodDonor.service.BloodUserDetailsService;
@@ -37,7 +38,7 @@ public class CitizenController {
     private ApplicationService applicationService;
 
     @GetMapping("")
-    public Citizen CitizenRedirect(@AuthenticationPrincipal UserDetails userDetails){
+    public Citizen CitizenInfo(@AuthenticationPrincipal UserDetails userDetails){
         Long user_id = userService.getLoggedInUserId(userDetails);
         return citizenService.getCitizenByUserId(user_id);
 
@@ -56,22 +57,13 @@ public class CitizenController {
         return applicationService.addApplication(citizen, applicationRequest);
     }
 
-    //show profile
-    @GetMapping("/{citizen_id}/profile")
-    public Citizen citizenInformation(@PathVariable Integer citizen_id) {
-        return citizenService.getCitizen(citizen_id);
-    }
+    @PutMapping("/{citizen_id}/edit")
+    public Citizen saveCitizenInformation(@PathVariable Integer citizen_id, @RequestBody ContactInfoRequest citizenInfo){
+        Citizen citizen = citizenService.getCitizen(citizen_id);
 
-//    @GetMapping("/{citizen_id}/profile/edit")
-//    public String editCitizenInformation(@PathVariable Integer citizen_id, @ModelAttribute("citizen information") Citizen citizenInfo, Model model){
-//        return "edit_citizen_info";
-//    }
-
-    @PostMapping("/{citizen_id}/profile/edit")
-    public String saveCitizenInformation(@PathVariable Integer citizen_id,@ModelAttribute("citizen information") Citizen citizenInfo, Model model){
-        citizenService.updateCitizen(citizenInfo);
-        model.addAttribute("updated citizen information", citizenInfo);
-        return "citizen_info";
+        citizen.setPhone_number(citizenInfo.getPhone_number());
+        citizen.setEmail(citizenInfo.getEmail());
+        return citizenService.updateCitizen(citizen);
     }
 
 }

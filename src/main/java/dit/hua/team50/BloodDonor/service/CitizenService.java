@@ -35,15 +35,8 @@ public class CitizenService {
     }
 
     @Transactional
-    public Integer saveCitizen(Citizen citizen) {
-        Citizen savedCitizen = citizenRepository.save(citizen);
-        return savedCitizen.getId();
-    }
-
-    @Transactional
-    public Integer updateCitizen(Citizen citizen) {
-        Citizen savedCitizen = citizenRepository.save(citizen);
-        return savedCitizen.getId();
+    public Citizen updateCitizen(Citizen citizen) {
+        return citizenRepository.save(citizen);
     }
 
 

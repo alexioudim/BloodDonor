@@ -43,11 +43,11 @@ public class Citizen {
     public Citizen() {
     }
 
-    public Citizen(String fname, String lname, String email, String phone_number, String date_of_birth, String address, String blood_type, User user) {
+    public Citizen(String fname, String lname, String phone_number, String email, String date_of_birth, String address, String blood_type, User user) {
         this.fname = fname;
         this.lname = lname;
-        this.email = email;
         this.phone_number = phone_number;
+        this.email = email;
         this.date_of_birth = date_of_birth;
         this.address = address;
         this.blood_type = blood_type;

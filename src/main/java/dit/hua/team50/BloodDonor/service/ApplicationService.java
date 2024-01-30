@@ -32,16 +32,6 @@ public class ApplicationService {
     }
 
     @Transactional
-    public Application findById(Integer application_id){
-        return applicationRepository.findById(application_id).get();
-    }
-
-    @Transactional
-    public Application saveApplication(Application application){
-        return applicationRepository.save(application);
-    }
-
-    @Transactional
     public void approveApplication(Integer application_id) {
         Application application = applicationRepository.findById(application_id)
                 .orElseThrow(() -> new RuntimeException("Application not found"));

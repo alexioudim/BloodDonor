@@ -15,16 +15,12 @@ import java.util.List;
 @RequestMapping("/secretary")
 public class ApplicationController {
 
-
-    @Autowired
-    private ApplicationRepository applicationRepository;
-
     @Autowired
     private ApplicationService applicationService;
 
     @GetMapping("")
     public List<Application> showApplications() {
-        return applicationRepository.findAll();
+        return applicationService.getApplications();
     }
 
     @GetMapping("/{application_id}")
