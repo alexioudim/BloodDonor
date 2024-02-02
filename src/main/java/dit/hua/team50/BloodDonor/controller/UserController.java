@@ -1,6 +1,7 @@
 package dit.hua.team50.BloodDonor.controller;
 
 import dit.hua.team50.BloodDonor.entity.Application;
+import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.Role;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.payload.request.EditUserRequest;
@@ -85,6 +86,12 @@ public class UserController {
 
         user.setRoles(roles);
         return adminService.saveUser(user);
+    }
+
+    @PostMapping("/{user_id}/citizen")
+    public Citizen newCitizen(@PathVariable Long user_id, @RequestBody Citizen newCitizen) {
+        User user = adminService.findUserById(user_id);
+        return new Citizen(newCitizen.getFname(), newCitizen.getLname(), user.getEmail(), newCitizen.getPhone_number(), newCitizen.getDate_of_birth(), newCitizen.getAddress(), newCitizen.getBlood_type(), user);
     }
 
     @DeleteMapping("/{user_id}")
