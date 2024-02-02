@@ -52,22 +52,7 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
-    @PostConstruct
-    public void setup() {
-        roleRepository.findByName("ROLE_ADMIN").orElseGet(() -> {
-            roleRepository.save(new Role("ROLE_ADMIN"));
-            return null;
-        });
-        roleRepository.findByName("ROLE_USER").orElseGet(() -> {
-            roleRepository.save(new Role("ROLE_USER"));
-            return null;
-        });
 
-        roleRepository.findByName("ROLE_SECRETARY").orElseGet(() -> {
-            roleRepository.save(new Role("ROLE_SECRETARY"));
-            return null;
-        });
-    }
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
             System.out.println("authentication");
