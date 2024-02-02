@@ -30,6 +30,10 @@ public class CitizenService {
     }
 
     @Transactional
+    public Citizen saveCitizen(Citizen citizen) {
+        return citizenRepository.save(citizen);
+    }
+    @Transactional
     public Citizen getCitizen(Integer citizen_id){
         return citizenRepository.findById(citizen_id).get();
     }
