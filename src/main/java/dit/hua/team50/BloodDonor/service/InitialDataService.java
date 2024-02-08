@@ -1,5 +1,6 @@
 package dit.hua.team50.BloodDonor.service;
 
+import ch.qos.logback.core.net.SyslogOutputStream;
 import dit.hua.team50.BloodDonor.entity.Application;
 import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.Role;
@@ -16,6 +17,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static java.time.LocalDate.now;
 
 @Service
 public class InitialDataService {
@@ -34,8 +37,6 @@ public class InitialDataService {
 
     @Autowired
     private ApplicationRepository applicationRepository;
-
-    private Citizen citizenLef;
 
     public void roleSetup() {
         roleRepository.findByName("ROLE_ADMIN").orElseGet(() -> {
@@ -80,64 +81,11 @@ public class InitialDataService {
             return null;
         });
 
-        userRepository.findByUsername("Lefteris").orElseGet(() -> {
-
-            User citizen = new User();
-            citizen.setUsername("Lefteris");
-            citizen.setEmail("lepolit@gmail.com");
-            citizen.setPassword(encoder.encode("citizenpass"));
-
-            userRepository.save(citizen);
-
-            return null;
-        });
-
     }
 
-    public void citizenSetup() {
-        citizenRepository.findByEmail("lepolit@gmail.com").orElseGet(() -> {
-            citizenLef = new Citizen();
-
-            User user = userRepository.findByEmail("lepolit@gmail.com").get();
-
-            citizenLef.setFname("Lefteris");
-            citizenLef.setLname("Politis");
-            citizenLef.setEmail(user.getEmail());
-            citizenLef.setAddress("Keratsiniou 4");
-            citizenLef.setPhone_number("6985844562");
-            citizenLef.setDate_of_birth("19/03/1999");
-            citizenLef.setBlood_type("A+");
-            citizenLef.setUser(user);
-
-            citizenRepository.save(citizenLef);
-
-            return null;
-
-        });
-    }
-
-    public void applicationSetup(Citizen citizen) {
-        applicationRepository.findByCitizen(citizen).orElseGet(() -> {
-            Application application = new Application();
-            application.setCitizen(citizen);
-            application.setRecent_blood_tests("lepolit.pdf");
-
-            List<Application> applications = new ArrayList<Application>();
-            applications.add(application);
-
-            citizenLef.setApplications(applications);
-
-            applicationRepository.save(application);
-            citizenRepository.save(citizenLef);
-
-            return null;
-        });
-    }
     @PostConstruct
     public void setup() {
         this.roleSetup();
         this.userSetup();
-        this.citizenSetup();
-        this.applicationSetup(citizenLef);
     }
 }

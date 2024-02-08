@@ -53,7 +53,6 @@ public class ApplicationService {
         application.setCitizen(citizen);
         application.setDate_created(now());
         application.setApproval_status("Pending");
-        application.setId(25);
         application.setRecent_blood_tests(applicationRequest.getRecent_blood_tests());
         return applicationRepository.save(application);
     }
