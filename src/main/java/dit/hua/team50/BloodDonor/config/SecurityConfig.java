@@ -59,14 +59,16 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/", "/auth/**").permitAll()
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/v2/api-docs/**",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html"
                         ).permitAll()
-                        .requestMatchers("/", "/admin/**", "/citizen/**", "/secretary/**").permitAll()
+                        .requestMatchers("/citizen/**").hasRole("ROLE_USER")
+                        .requestMatchers("/secretary/**").hasRole("ROLE_SECRETARY")
+                        .requestMatchers("/admin/**").hasRole("ROLE_ADMIN")
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
