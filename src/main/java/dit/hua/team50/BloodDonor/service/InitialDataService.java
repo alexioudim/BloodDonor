@@ -1,8 +1,5 @@
 package dit.hua.team50.BloodDonor.service;
 
-import ch.qos.logback.core.net.SyslogOutputStream;
-import dit.hua.team50.BloodDonor.entity.Application;
-import dit.hua.team50.BloodDonor.entity.Citizen;
 import dit.hua.team50.BloodDonor.entity.Role;
 import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.ApplicationRepository;
@@ -14,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.HashSet;
+import java.util.Set;
 
-import static java.time.LocalDate.now;
 
 @Service
 public class InitialDataService {
@@ -63,6 +58,11 @@ public class InitialDataService {
            admin.setEmail("MasterControlProgram@gmail.com");
            admin.setPassword(encoder.encode("adminpass"));
 
+           Role role = roleRepository.findByName("ROLE_ADMIN")
+                   .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+           Set<Role> roles = new HashSet<>();
+           roles.add(role);
+
            userRepository.save(admin);
 
            return null;
@@ -75,6 +75,11 @@ public class InitialDataService {
             secretary.setUsername("Alikh");
             secretary.setEmail("Alikh@gmail.com");
             secretary.setPassword(encoder.encode("secretarypass"));
+
+            Role role = roleRepository.findByName("ROLE_SECRETARY")
+                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+            Set<Role> roles = new HashSet<>();
+            roles.add(role);
 
             userRepository.save(secretary);
 
