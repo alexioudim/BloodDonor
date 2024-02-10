@@ -68,35 +68,13 @@ public class UserController {
             user.setPassword(encoder.encode(userInfo.getPassword()));
         }
 
-        Set<String> strRoles = userInfo.getRole();
+        String roleName = userInfo.getRoleName();
         Set<Role> roles = new HashSet<>();
 
-        if (strRoles == null) {
-            Role userRole = roleRepository.findByName("ROLE_USER")
-                    .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-            roles.add(userRole);
-        } else {
-            strRoles.forEach(role -> {
-                switch (role) {
-                    case "admin":
-                        Role adminRole = roleRepository.findByName("ROLE_ADMIN")
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(adminRole);
 
-                        break;
-                    case "mod":
-                        Role secretaryRole = roleRepository.findByName("ROLE_SECRETARY")
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(secretaryRole);
-
-                        break;
-                    default:
-                        Role userRole = roleRepository.findByName("ROLE_USER")
-                                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
-                        roles.add(userRole);
-                }
-            });
-        }
+        Role role = roleRepository.findByName(roleName)
+                .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
+        roles.add(role);
 
         user.setRoles(roles);
         return adminService.saveUser(user);

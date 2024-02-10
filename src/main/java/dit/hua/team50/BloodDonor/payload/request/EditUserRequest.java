@@ -21,7 +21,7 @@ public class EditUserRequest {
     @Size(min = 6, max = 40)
     private String password;
 
-    private Set<String> role;
+    private String roleName;
 
     public String getUsername() {
         return username;
@@ -47,11 +47,11 @@ public class EditUserRequest {
         this.password = password;
     }
 
-    public Set<String> getRole() {
-        return role;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRole(Set<String> role) {
-        this.role = role;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 }
