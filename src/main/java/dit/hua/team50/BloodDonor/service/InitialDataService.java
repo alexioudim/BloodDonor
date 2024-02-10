@@ -63,6 +63,8 @@ public class InitialDataService {
            Set<Role> roles = new HashSet<>();
            roles.add(role);
 
+           admin.setRoles(roles);
+
            userRepository.save(admin);
 
            return null;
@@ -80,6 +82,8 @@ public class InitialDataService {
                     .orElseThrow(() -> new RuntimeException("Error: Role is not found."));
             Set<Role> roles = new HashSet<>();
             roles.add(role);
+
+            secretary.setRoles(roles);
 
             userRepository.save(secretary);
 
