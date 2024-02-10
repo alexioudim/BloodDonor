@@ -68,7 +68,7 @@ public class SecurityConfig {
                         ).permitAll()
                         .requestMatchers("/citizen/**").hasRole("USER")
                         .requestMatchers("/secretary/**").hasRole("SECRETARY")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/admin/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
