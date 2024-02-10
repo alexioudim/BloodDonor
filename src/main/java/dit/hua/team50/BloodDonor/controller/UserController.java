@@ -64,7 +64,9 @@ public class UserController {
         User user = adminService.findUserById(user_id);
         user.setUsername(userInfo.getUsername());
         user.setEmail(userInfo.getEmail());
-        user.setPassword(encoder.encode(userInfo.getPassword()));
+        if (!(user.getPassword().equals(userInfo.getPassword()))) {
+            user.setPassword(encoder.encode(userInfo.getPassword()));
+        }
 
         Set<String> strRoles = userInfo.getRole();
         Set<Role> roles = new HashSet<>();
