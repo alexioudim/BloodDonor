@@ -59,7 +59,7 @@ public class UserController {
         return citizenService.saveCitizen(citizen);
     }
 
-    @PutMapping("/{user_id}")
+    /*@PutMapping("/{user_id}")
     public User editUser(@PathVariable long user_id, @RequestBody EditUserRequest userInfo) {
         User user = adminService.findUserById(user_id);
         user.setUsername(userInfo.getUsername());
@@ -78,6 +78,21 @@ public class UserController {
 
         user.setRoles(roles);
         return adminService.saveUser(user);
+    }*/
+
+    @PutMapping("/{user_id}")
+    public User editUser(@PathVariable long user_id, @RequestBody User userInfo) {
+        User user = adminService.findUserById(user_id);
+        user.setUsername(userInfo.getUsername());
+
+        if (!(user.getPassword().equals(userInfo.getPassword()))) {
+            user.setPassword(encoder.encode(userInfo.getPassword()));
+        }
+
+        user.setEmail(userInfo.getEmail());
+        user.setRoles(userInfo.getRoles());
+
+        return adminService.saveUser(userInfo);
     }
 
     @DeleteMapping("/{user_id}")
