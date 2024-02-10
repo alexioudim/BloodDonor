@@ -92,7 +92,7 @@ public class UserController {
         user.setEmail(userInfo.getEmail());
         user.setRoles(userInfo.getRoles());
 
-        return adminService.saveUser(userInfo);
+        return adminService.saveUser(user);
     }
 
     @DeleteMapping("/{user_id}")
