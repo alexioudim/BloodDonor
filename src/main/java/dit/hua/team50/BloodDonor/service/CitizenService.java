@@ -2,7 +2,6 @@ package dit.hua.team50.BloodDonor.service;
 
 import dit.hua.team50.BloodDonor.entity.Application;
 import dit.hua.team50.BloodDonor.entity.Citizen;
-import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.repository.CitizenRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

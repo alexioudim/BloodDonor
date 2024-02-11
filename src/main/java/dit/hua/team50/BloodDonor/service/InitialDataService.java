@@ -2,8 +2,6 @@ package dit.hua.team50.BloodDonor.service;
 
 import dit.hua.team50.BloodDonor.entity.Role;
 import dit.hua.team50.BloodDonor.entity.User;
-import dit.hua.team50.BloodDonor.repository.ApplicationRepository;
-import dit.hua.team50.BloodDonor.repository.CitizenRepository;
 import dit.hua.team50.BloodDonor.repository.RoleRepository;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
 import jakarta.annotation.PostConstruct;
@@ -25,13 +23,7 @@ public class InitialDataService {
     private RoleRepository roleRepository;
 
     @Autowired
-    private CitizenRepository citizenRepository;
-
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
-    private ApplicationRepository applicationRepository;
 
     public void roleSetup() {
         roleRepository.findByName("ROLE_ADMIN").orElseGet(() -> {

@@ -3,6 +3,7 @@ package dit.hua.team50.BloodDonor.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,6 +21,7 @@ public class Citizen {
     private String fname;
     @Column
     private String lname;
+    @Size(min = 10, max = 10)
     @Column
     private String phone_number;
     @Email

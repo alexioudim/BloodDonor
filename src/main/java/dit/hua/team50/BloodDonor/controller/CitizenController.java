@@ -2,28 +2,18 @@ package dit.hua.team50.BloodDonor.controller;
 
 import dit.hua.team50.BloodDonor.entity.Application;
 import dit.hua.team50.BloodDonor.entity.Citizen;
-import dit.hua.team50.BloodDonor.entity.User;
 import dit.hua.team50.BloodDonor.payload.request.ApplicationRequest;
 import dit.hua.team50.BloodDonor.payload.request.ContactInfoRequest;
-import dit.hua.team50.BloodDonor.repository.UserRepository;
 import dit.hua.team50.BloodDonor.service.ApplicationService;
 import dit.hua.team50.BloodDonor.service.BloodUserDetailsService;
 import dit.hua.team50.BloodDonor.service.CitizenService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
-import static java.time.LocalDate.now;
 
 @RestController
 @RequestMapping("/citizen")

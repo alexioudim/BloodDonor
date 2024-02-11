@@ -12,7 +12,6 @@ import dit.hua.team50.BloodDonor.service.UserDetailsImplementation;
 import dit.hua.team50.BloodDonor.config.JwtUtils;
 import dit.hua.team50.BloodDonor.repository.UserRepository;
 import dit.hua.team50.BloodDonor.payload.request.LoginRequest;
-import jakarta.annotation.PostConstruct;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,12 +20,10 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 

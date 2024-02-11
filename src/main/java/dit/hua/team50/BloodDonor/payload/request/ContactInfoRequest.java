@@ -3,9 +3,11 @@ package dit.hua.team50.BloodDonor.payload.request;
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 public class ContactInfoRequest {
     @NotBlank
+    @Size(min = 10, max = 10)
     @Column
     private String phone_number;
     @Email
