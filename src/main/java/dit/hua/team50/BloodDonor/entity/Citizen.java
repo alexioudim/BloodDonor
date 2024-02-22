@@ -3,6 +3,7 @@ package dit.hua.team50.BloodDonor.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
@@ -17,20 +18,27 @@ public class Citizen {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer Id;
+    @NotBlank
     @Column
     private String fname;
+    @NotBlank
     @Column
     private String lname;
+    @NotBlank
     @Size(min = 10, max = 10)
     @Column
     private String phone_number;
+    @NotBlank
     @Email
     @Column
     private String email;
+    @NotBlank
     @Column
     private String date_of_birth;
+    @NotBlank
     @Column
     private String address;
+    @NotBlank
     @Column
     private String blood_type;
 

@@ -2,6 +2,7 @@ package dit.hua.team50.BloodDonor.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.time.LocalDate;
 @Entity
@@ -16,6 +17,7 @@ public class Application {
     @Column
     private LocalDate date_created;
 
+    @NotBlank
     @Column
     private String recent_blood_tests;
     @Column
