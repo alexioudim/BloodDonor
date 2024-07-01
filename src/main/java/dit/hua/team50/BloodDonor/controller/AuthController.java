@@ -50,6 +50,7 @@ public class AuthController {
     JwtUtils jwtUtils;
 
 
+
     @PostMapping("/login")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
             System.out.println("authentication");

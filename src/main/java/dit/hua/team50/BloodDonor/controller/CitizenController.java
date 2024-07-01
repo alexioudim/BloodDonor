@@ -7,6 +7,7 @@ import dit.hua.team50.BloodDonor.payload.request.ContactInfoRequest;
 import dit.hua.team50.BloodDonor.service.ApplicationService;
 import dit.hua.team50.BloodDonor.service.BloodUserDetailsService;
 import dit.hua.team50.BloodDonor.service.CitizenService;
+import dit.hua.team50.BloodDonor.service.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,6 +28,10 @@ public class CitizenController {
     @Autowired
     private ApplicationService applicationService;
 
+    @Autowired
+    private EmailSenderService senderService;
+
+
     @GetMapping("")
     public Citizen CitizenInfo(@AuthenticationPrincipal UserDetails userDetails){
         Long user_id = userService.getLoggedInUserId(userDetails);
@@ -44,6 +49,10 @@ public class CitizenController {
     @PostMapping("/{citizen_id}/new")
     public Application newApplication(@PathVariable Integer citizen_id, @RequestBody ApplicationRequest applicationRequest){
         Citizen citizen = citizenService.getCitizen(citizen_id);
+        String citizenEmail = citizen.getEmail();
+        senderService.sendSimpleEmail(citizenEmail,
+                "Application Created!",
+                "Your Application has been succesfully created! Thanks for applying to blood donation!");
         return applicationService.addApplication(citizen, applicationRequest);
     }
 
