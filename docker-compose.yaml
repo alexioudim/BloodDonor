@@ -44,7 +44,7 @@ services:
       context: git@github.com:TasosK7/BloodDonorVue.git#docker
       dockerfile: Dockerfile
     environment:
-      -VITE_BACKEND=http://4.211.108.10:7070
+      - VITE_BACKEND=http://4.211.108.10:7070
     ports:
       - 9000:80
     depends_on:
