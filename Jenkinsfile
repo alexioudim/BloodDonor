@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        EMAIL_TO = "it2021002@hua.gr"
-    }
-
     stages {
         stage('Checkout') {
             steps {
@@ -50,12 +46,6 @@ pipeline {
                     ansible-playbook -i ~/workspace/ansible/hosts.yaml -l azure-app-server -e branch=main -e backend_server_url=http://localhost:7070 ~/workspace/ansible/playbooks/vuejs.yaml
                 '''
             }
-        }
-    }
-
-    post {
-        always {
-            mail  to: "${EMAIL_TO}", body: "Project ${env.JOB_NAME} <br>, Build status ${currentBuild.currentResult} <br> Build Number: ${env.BUILD_NUMBER} <br> Build URL: ${env.BUILD_URL}", subject: "JENKINS: Project name -> ${env.JOB_NAME}, Build -> ${currentBuild.currentResult}"
         }
     }
 }
