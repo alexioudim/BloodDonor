@@ -41,7 +41,7 @@ services:
   frontend:
     image: bdvue
     build:
-      context: git@github.com:TasosK7/BloodDonorVue.git
+      context: git@github.com:TasosK7/BloodDonorVue.git#docker
       dockerfile: Dockerfile
     environment:
       -VITE_BACKEND=http://4.211.108.10:7070
