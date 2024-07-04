@@ -42,10 +42,7 @@ services:
     image: bdvue
     build:
       context: git@github.com:TasosK7/BloodDonorVue.git#Docker
-      #context: git@github.com:gkoulis/ds-lab-2023-frontend.git#env
-      dockerfile: Dockerfile
-    #    environment:
-    #      - VITE_BACKEND=http://spring:9090
+      dockerfile: node.Dockerfile
     ports:
       - 9000:80
     depends_on:
