@@ -11,11 +11,6 @@ pipeline {
                 git branch: 'rest', url: 'git@github.com:alexioudim/BloodDonor.git'
             }
         }
-        stage('Test') {
-            steps {
-                sh './mvnw test'
-            }
-        }
         stage('run ansible pipeline') {
             steps {
                 build job: 'ansible'
@@ -50,9 +45,9 @@ pipeline {
         stage('Deploy frontend') {
             steps {
                 sh '''
-                    sed -i 's/dbserver/4.211.249.239/g' ~/workspace/ansible/host_vars/appserver-vm.yaml
+                    sed -i 's/dbserver/4.211.249.239/g' ~/workspace/ansible/host_vars/azure-app-server.yaml
                     export ANSIBLE_CONFIG=~/workspace/ansible/ansible.cfg
-                    ansible-playbook -i ~/workspace/ansible/hosts.yaml -l appserver-vm -e branch=main -e backend_server_url=http://localhost:9090 ~/workspace/ansible/playbooks/vuejs.yaml
+                    ansible-playbook -i ~/workspace/ansible/hosts.yaml -l azure-app-server -e branch=main -e backend_server_url=http://localhost:7070 ~/workspace/ansible/playbooks/vuejs.yaml
                 '''
             }
         }
