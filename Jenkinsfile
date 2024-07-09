@@ -7,6 +7,17 @@ pipeline {
                 git branch: 'rest', url: 'git@github.com:alexioudim/BloodDonor.git'
             }
         }
+        stage('Preparation') {
+                    steps {
+                        sh 'chmod +x ./mvnw'
+                    }
+                }
+
+        stage('Test') {
+                    steps {
+                        sh './mvnw test'
+                    }
+                }
         stage('run ansible pipeline') {
             steps {
                 build job: 'ansible'
