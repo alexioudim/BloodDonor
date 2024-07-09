@@ -42,7 +42,7 @@ pipeline {
             steps {
                 sh '''
                             export ANSIBLE_CONFIG=~/workspace/ansible/ansible.cfg
-                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l azure-docker-server ~/workspace/ansible/playbooks/docker.yaml
+                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l azure-docker-server-2 ~/workspace/ansible/playbooks/docker.yaml
                         '''
             }
         }
