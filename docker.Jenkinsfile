@@ -15,7 +15,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'api', url: 'git@github.com:tsadimasteaching/ds-lab-2023.git'
+                git branch: 'rest', url: 'git@github.com:alexioudim/BloodDonor.git'
             }
         }
         stage('Test') {
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 sh '''
                             export ANSIBLE_CONFIG=~/workspace/ansible/ansible.cfg
-                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l appserver-vm ~/workspace/ansible/playbooks/spring-vue-docker.yaml
+                            ansible-playbook -i ~/workspace/ansible/hosts.yaml -l appserver-vm ~/workspace/ansible/playbooks/docker.yaml
                         '''
             }
         }
