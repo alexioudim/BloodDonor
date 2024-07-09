@@ -6,7 +6,6 @@ pipeline {
     }
 
     environment {
-        DOCKER_TOKEN = credentials('docker-push-secret')
         DOCKER_USER = 'tasosk7'
         DOCKER_SERVER = 'ghcr.io'
         DOCKER_PREFIX = 'ghcr.io/tasosk7/bd-backend:0.1'
@@ -29,7 +28,7 @@ pipeline {
                     HEAD_COMMIT=$(git rev-parse --short HEAD)
                     TAG=$HEAD_COMMIT-$BUILD_ID
                     docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest  -f backend.Dockerfile .
-                    docker login $DOCKER_SERVER -u $DOCKER_USER --password-stdin
+                    docker login $DOCKER_SERVER -u $DOCKER_USER
                     docker push $DOCKER_PREFIX --all-tags
                 '''
             }
