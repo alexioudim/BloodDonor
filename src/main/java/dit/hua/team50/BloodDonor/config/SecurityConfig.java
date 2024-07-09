@@ -38,7 +38,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedHeaders(
-                List.of("Authorization", "Cache-Control", "Content-Type"));
+                List.of("*"));
         corsConfiguration.setAllowedOrigins(List.of("*"));
         corsConfiguration
                 .setAllowedMethods(List.of("*"));
