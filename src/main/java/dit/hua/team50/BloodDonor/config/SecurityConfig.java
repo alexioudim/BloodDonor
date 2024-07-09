@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfiguration;
 
+import java.util.Arrays;
 import java.util.List;
 
 @Configuration
@@ -37,13 +38,10 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
-        corsConfiguration.setAllowedHeaders(
-                List.of("*"));
-        corsConfiguration.setAllowedOrigins(List.of("*"));
-        corsConfiguration
-                .setAllowedMethods(List.of("*"));
-        corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("*"));
+        corsConfiguration.setAllowedOrigins(Arrays.asList("*"));
+        corsConfiguration.setAllowedMethods(Arrays.asList("*"));
+        corsConfiguration.setAllowedHeaders(Arrays.asList("*"));
+
 
         http
                 .csrf(csrf -> csrf.disable())
@@ -52,7 +50,7 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/auth/**","/actuator/health/liveness", "/actuator/health/readiness").permitAll()
+                        .requestMatchers("/", "/auth/**","/actuator/health/**").permitAll()
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/v2/api-docs/**",
