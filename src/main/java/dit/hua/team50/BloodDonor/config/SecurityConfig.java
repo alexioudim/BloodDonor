@@ -39,11 +39,11 @@ public class SecurityConfig {
         final CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowedHeaders(
                 List.of("Authorization", "Cache-Control", "Content-Type"));
-        corsConfiguration.setAllowedOrigins(List.of("http://172.211.129.169:9000","http://localhost:5173", "http://4.233.136.193"));
+        corsConfiguration.setAllowedOrigins(List.of("*"));
         corsConfiguration
-                .setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PUT", "OPTIONS", "PATCH", "DELETE"));
+                .setAllowedMethods(List.of("*"));
         corsConfiguration.setAllowCredentials(true);
-        corsConfiguration.setExposedHeaders(List.of("Authorization"));
+        corsConfiguration.setExposedHeaders(List.of("*"));
 
         http
                 .csrf(csrf -> csrf.disable())
@@ -52,7 +52,7 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/auth/**","/actuator/health/**").permitAll()
+                        .requestMatchers("/", "/auth/**","/actuator/health/liveness", "/actuator/health/readiness").permitAll()
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/v2/api-docs/**",
