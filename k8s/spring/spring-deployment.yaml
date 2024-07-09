@@ -17,18 +17,18 @@ spec:
     spec:
       containers:
         - name:  spring
-          image:  ghcr.io/tasosk7/bd-backend:latest
+          image:  ghcr.io/tasosk7/bd-backend:0.1
           livenessProbe:
             httpGet:
               path: "/actuator/health/liveness"
-              port: 9090
+              port: 7070
             failureThreshold: 20
             periodSeconds: 10
             initialDelaySeconds: 30
           readinessProbe:
             httpGet:
               path: "/actuator/health/readiness"
-              port: 9090
+              port: 7070
             failureThreshold: 10
             periodSeconds: 10
             initialDelaySeconds: 30
@@ -47,7 +47,6 @@ spec:
             - name: SPRING_DATASOURCE_PASSWORD
               value: pass123
           ports:
-            - containerPort:  9090
+            - containerPort:  7070
               name:  spring
-      imagePullSecrets:
-        - name: registry-credentials
+
