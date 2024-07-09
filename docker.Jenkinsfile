@@ -8,7 +8,7 @@ pipeline {
     environment {
         DOCKER_USER = 'tasosk7'
         DOCKER_SERVER = 'ghcr.io'
-        DOCKER_PREFIX = 'ghcr.io/tasosk7/bd-backend:0.1'
+        DOCKER_PREFIX = 'ghcr.io/tasosk7/bd-backend'
     }
 
     stages {
@@ -22,17 +22,7 @@ pipeline {
                 sh './mvnw test'
             }
         }*/
-        stage('Docker build and push') {
-            steps {
-                sh '''
-                    HEAD_COMMIT=$(git rev-parse --short HEAD)
-                    TAG=$HEAD_COMMIT-$BUILD_ID
-                    docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest  -f backend.Dockerfile .
-                    docker login $DOCKER_SERVER -u $DOCKER_USER
-                    docker push $DOCKER_PREFIX --all-tags
-                '''
-            }
-        }
+
         stage('run ansible pipeline') {
             steps {
                 build job: 'ansible'
@@ -46,6 +36,17 @@ pipeline {
                         '''
             }
         }
+        stage('Docker build and push') {
+                    steps {
+                        sh '''
+                            HEAD_COMMIT=$(git rev-parse --short HEAD)
+                            TAG=$HEAD_COMMIT-$BUILD_ID
+                            docker build --rm -t $DOCKER_PREFIX:$TAG -t $DOCKER_PREFIX:latest  -f backend.Dockerfile .
+                            docker login $DOCKER_SERVER -u $DOCKER_USER
+                            docker push $DOCKER_PREFIX --all-tags
+                        '''
+                    }
+                }
     }
 
 }
