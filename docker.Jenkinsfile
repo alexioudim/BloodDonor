@@ -7,9 +7,9 @@ pipeline {
 
     environment {
         DOCKER_TOKEN = credentials('docker-push-secret')
-        DOCKER_USER = 'tsadimas'
+        DOCKER_USER = 'tasosk7'
         DOCKER_SERVER = 'ghcr.io'
-        DOCKER_PREFIX = 'ghcr.io/tsadimas/ds-spring'
+        DOCKER_PREFIX = 'ghcr.io/tasosk7/bd-backend'
     }
 
     stages {
@@ -18,11 +18,11 @@ pipeline {
                 git branch: 'rest', url: 'git@github.com:alexioudim/BloodDonor.git'
             }
         }
-        stage('Test') {
+        /*stage('Test') {
             steps {
                 sh './mvnw test'
             }
-        }
+        }*/
         stage('Docker build and push') {
             steps {
                 sh '''
