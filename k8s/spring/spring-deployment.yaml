@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name:  spring
-          image:  ghcr.io/tsadimas/ds-spring:1.0
+          image:  ghcr.io/tasosk7/bd-backend:latest
           livenessProbe:
             httpGet:
               path: "/actuator/health/liveness"
@@ -41,7 +41,7 @@ spec:
               memory: 512Mi
           env:
             - name: SPRING_DATASOURCE_URL
-              value: jdbc:postgresql://postgres:5432/dsdb
+              value: jdbc:postgresql://postgres:5432/blooddb
             - name: SPRING_DATASOURCE_USERNAME
               value: dbuser
             - name: SPRING_DATASOURCE_PASSWORD
