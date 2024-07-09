@@ -50,7 +50,7 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex
                         .authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/", "/auth/**","/actuator/health/**").permitAll()
+                        .requestMatchers("/", "/auth/**","/actuator/**").permitAll()
                         .requestMatchers(
                                 "/v3/api-docs/**",
                                 "/v2/api-docs/**",
