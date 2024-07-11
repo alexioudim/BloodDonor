@@ -25,7 +25,7 @@ pipeline {
             }
         }
 
-        stage('deploy backend to k8s') {
+        stage('deploy frontend to k8s') {
                     steps {
                         sh '''
                             HEAD_COMMIT=$(git rev-parse --short HEAD)
