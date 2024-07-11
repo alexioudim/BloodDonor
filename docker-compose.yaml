@@ -21,7 +21,7 @@ services:
   spring:
     image: bd
     build:
-      context: git@github.com:alexioudim/BloodDonor.git#rest
+      context: https://github.com/alexioudim/BloodDonor.git#rest
       dockerfile: backend.Dockerfile
     ports:
       - "7070:7070"
@@ -41,7 +41,7 @@ services:
   frontend:
     image: bdvue
     build:
-      context: git@github.com:TasosK7/BloodDonorVue.git#docker
+      context: https://github.com/TasosK7/BloodDonorVue.git#docker
       dockerfile: Dockerfile
     environment:
       - VITE_BACKEND=http://4.211.108.10:7070
