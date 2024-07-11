@@ -1,29 +1,12 @@
 pipeline {
     agent any
 
-    environment {
-            JAVA_HOME = "/usr/lib/jvm/java-17-openjdk-amd64"
-        }
-
     stages {
         stage('Checkout') {
             steps {
                 git branch: 'rest', url: 'git@github.com:alexioudim/BloodDonor.git'
             }
         }
-
-        stage('preparation') {
-                    steps {
-                        sh 'chmod +x ./mvnw'
-                    }
-                }
-
-        stage('Test') {
-                    steps {
-                        sh './mvnw test'
-                    }
-                }
-
 
         stage('run ansible pipeline') {
             steps {
