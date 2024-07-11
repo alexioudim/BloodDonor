@@ -16,8 +16,8 @@ spec:
         app: vue
     spec:
       containers:
-        - name: vue
-          image: ghcr.io/tasosk7/bd-frontend:0.1
+        - name:  vue
+          image:  ghcr.io/tasosk7/bd-frontend:latest
           resources:
             requests:
               cpu: 200m
@@ -26,8 +26,8 @@ spec:
               cpu: 1000m
               memory: 512Mi
           env:
-            - name: VITE_BACKEND
-              value: http://spring.default.cluster.local:7070
+              - name: VITE_BACKEND
+                value: http://spring:7070
           ports:
             - containerPort: 80
               name:  vue
