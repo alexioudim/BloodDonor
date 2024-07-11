@@ -27,7 +27,7 @@ spec:
               memory: 512Mi
           env:
               - name: VITE_BACKEND
-                value: http://bd-spring.ddns.net/app
+                value: http://spring.default.cluster.local:7070
           ports:
             - containerPort: 80
               name:  vue
