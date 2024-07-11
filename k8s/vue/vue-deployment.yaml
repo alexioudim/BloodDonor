@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name:  vue
-          image:  ghcr.io/tasosk7/bd-frontend:latest
+          image:  ghcr.io/tasosk7/bd-frontend:0.1
           resources:
             requests:
               cpu: 200m
@@ -25,8 +25,10 @@ spec:
             limits:
               cpu: 1000m
               memory: 512Mi
+          env:
+              - name: VITE_BACKEND
+                value: http://bd-spring.ddns.net/app
           ports:
             - containerPort: 80
               name:  vue
-      imagePullSecrets:
-        - name: registry-credentials
+
