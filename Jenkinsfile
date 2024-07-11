@@ -35,7 +35,7 @@ pipeline {
                 sh '''
                     sed -i 's/dbserver/4.211.249.239/g' ~/workspace/ansible/host_vars/azure-app-server.yaml
                     export ANSIBLE_CONFIG=~/workspace/ansible/ansible.cfg
-                    ansible-playbook -i ~/workspace/ansible/hosts.yaml -l azure-app-server -e branch=main -e backend_server_url=http://localhost:7070 ~/workspace/ansible/playbooks/vuejs.yaml
+                    ansible-playbook -i ~/workspace/ansible/hosts.yaml -l azure-frontend-server -e branch=main -e backend_server_url=http://localhost:7070 ~/workspace/ansible/playbooks/vuejs.yaml
                 '''
             }
         }
