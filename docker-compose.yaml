@@ -46,7 +46,7 @@ services:
     environment:
       - VITE_BACKEND=http://4.211.108.10:7070
     ports:
-      - 80:80
+      - 9000:80
     depends_on:
       spring:
         condition: service_healthy
