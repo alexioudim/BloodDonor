@@ -20,7 +20,7 @@ pipeline {
                     # if we had multiple configurations in kubeconfig file, we should select the correct one
                     # kubectl config use-context devops
                     kubectl set image deployment/spring-deployment spring=$DOCKER_PREFIX:latest
-                    kubectl rollout status deployment spring-deployment --watch --timeout=5m
+                    kubectl rollout status deployment spring-deployment --watch --timeout=2m
                 '''
             }
         }
@@ -33,7 +33,7 @@ pipeline {
                             # if we had multiple configurations in kubeconfig file, we should select the correct one
                             # kubectl config use-context devops
                             kubectl set image deployment/vue-deployment vue=$DOCKER_PREFIX_VUE:latest
-                            kubectl rollout status deployment vue-deployment --watch --timeout=5m
+                            kubectl rollout status deployment vue-deployment --watch --timeout=2m
                         '''
                     }
                 }
