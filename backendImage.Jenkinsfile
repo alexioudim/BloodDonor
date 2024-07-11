@@ -38,7 +38,6 @@ pipeline {
 
         stage('Docker build frontend and push') {
                         steps {
-                            dir('BloodDonorVue')
                             sh '''
                                 HEAD_COMMIT=$(git rev-parse --short HEAD)
                                 TAG=$HEAD_COMMIT-$BUILD_ID
