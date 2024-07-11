@@ -38,12 +38,13 @@ pipeline {
 
         stage('Docker build frontend and push') {
                         steps {
+                            dir('BloodDonorVue')
                             sh '''
                                 HEAD_COMMIT=$(git rev-parse --short HEAD)
                                 TAG=$HEAD_COMMIT-$BUILD_ID
                                 docker build --rm -t $DOCKER_PREFIX_VUE:$TAG -t $DOCKER_PREFIX_VUE:latest  -f Dockerfile .
                                 echo $DOCKER_TOKEN | docker login $DOCKER_SERVER -u $DOCKER_USER --password-stdin
-                                docker push $DOCKER_PREFIX --all-tags
+                                docker push $DOCKER_PREFIX_VUE --all-tags
                             '''
                         }
         }
