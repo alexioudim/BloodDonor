@@ -14,12 +14,12 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout Backend') {
             steps {
                 git branch: 'rest', url: 'git@github.com:alexioudim/BloodDonor.git'
             }
         }
-        stage('Docker build and push') {
+        stage('Docker build backend and push') {
                     steps {
                         sh '''
                             HEAD_COMMIT=$(git rev-parse --short HEAD)
@@ -30,13 +30,13 @@ pipeline {
                         '''
                     }
         }
-        stage('Checkout') {
+        stage('Checkout Frontend') {
                     steps {
                         git branch: 'docker', url: 'git@github.com:TasosK7/BloodDonorVue.git'
                     }
         }
 
-        stage('Docker build and push') {
+        stage('Docker build frontend and push') {
                         steps {
                             sh '''
                                 HEAD_COMMIT=$(git rev-parse --short HEAD)
