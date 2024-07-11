@@ -17,7 +17,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/citizen")
+@RequestMapping("/api/citizen")
 public class CitizenController {
     @Autowired
     private BloodUserDetailsService userService;
