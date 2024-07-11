@@ -34,7 +34,7 @@ pipeline {
                     steps {
                         git branch: 'docker', url: 'git@github.com:TasosK7/BloodDonorVue.git'
                     }
-                }
+        }
 
         stage('Docker build and push') {
                         steps {
@@ -47,5 +47,5 @@ pipeline {
                             '''
                         }
         }
-     }
+    }
 }
