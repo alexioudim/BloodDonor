@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name:  spring
-          image:  ghcr.io/tasosk7/bd-backend:0.1
+          image:  ghcr.io/tasosk7/bd-backend:0.3
           livenessProbe:
             httpGet:
               path: "/actuator/health/liveness"

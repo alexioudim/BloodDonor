@@ -4,13 +4,13 @@ metadata:
   name: spring-ingress
 spec:
   rules:
-    - host: "bd-spring.ddns.net"
+    - host: bd-spring.ddns.net
       http:
         paths:
-          - path: /
-            pathType: ImplementationSpecific
+          - pathType: Prefix
+            path: /app
             backend:
               service:
                 name: spring
                 port:
-                  name: spring
+                  number: 7070
