@@ -32,7 +32,7 @@ pipeline {
         }
         stage('Checkout Frontend') {
                     steps {
-                        git branch: 'docker', url: 'git@github.com:TasosK7/BloodDonorVue.git'
+                        git branch: 'k8s', url: 'git@github.com:TasosK7/BloodDonorVue.git'
                     }
         }
 
