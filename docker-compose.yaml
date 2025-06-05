@@ -21,7 +21,7 @@ services:
   spring:
     image: bd
     build:
-      context: https://github.com/alexioudim/BloodDonor.git#rest
+      context: https://github.com/alexioudim/BloodDonor.git#cloud
       dockerfile: backend.Dockerfile
     ports:
       - "7070:7070"
